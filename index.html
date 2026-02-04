@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 TaskVibe - Your Creative Task Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Quicksand:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-theme="light">
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <!-- Floating Emojis -->
+    <div class="emoji-float">🎨</div>
+    <div class="emoji-float">✨</div>
+    <div class="emoji-float">🚀</div>
+    <div class="emoji-float">💫</div>
+    <div class="emoji-float">🌈</div>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">✨</span>
+                <span class="logo-text">TaskVibe</span>
+            </div>
+
+            <!-- Live Clock -->
+            <div class="live-clock" id="liveClock">
+                <div class="clock-emoji">🕐</div>
+                <div class="clock-display">
+                    <div class="clock-time" id="clockTime">00:00:00</div>
+                    <div class="clock-date" id="clockDate">Loading...</div>
+                </div>
+            </div>
+
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li><a class="nav-link active" data-page="dashboard">🏠 Dashboard</a></li>
+                <li><a class="nav-link" data-page="all-tasks">📋 All Tasks</a></li>
+                <li><a class="nav-link" data-page="alarms">⏰ Alarms</a></li>
+                <li><button class="theme-toggle-btn" id="themeToggle">🌙</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Dashboard Page -->
+        <div class="page active" id="dashboard">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" data-tab="daily">
+                    <span class="tab-emoji">☀️</span>Daily
+                </button>
+                <button class="tab" data-tab="weekly">
+                    <span class="tab-emoji">📅</span>Weekly
+                </button>
+                <button class="tab" data-tab="monthly">
+                    <span class="tab-emoji">🗓️</span>Monthly
+                </button>
+                <button class="tab" data-tab="datewise">
+                    <span class="tab-emoji">📆</span>Date Wise
+                </button>
+            </div>
+
+            <!-- Main Content -->
+            <div class="content">
+                <!-- Daily Tasks -->
+                <div class="tab-content active" id="daily-content">
+                    <h2 class="section-title">Today's Magic ✨</h2>
+                    <div class="input-section">
+                        <input type="text" class="task-input" id="daily-input" placeholder="What's on your agenda today? 🎯">
+                        <button class="add-task-btn" onclick="addTask('daily')">Add Task 🚀</button>
+                    </div>
+                    <ul class="task-list" id="daily-list"></ul>
+                    <div class="stats" id="daily-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="daily-total">0</span>
+                            <span class="stat-label">Total Tasks</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="daily-completed">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="daily-pending">0</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekly Tasks -->
+                <div class="tab-content" id="weekly-content">
+                    <h2 class="section-title">Weekly Goals 🎯</h2>
+                    <div class="input-section">
+                        <input type="text" class="task-input" id="weekly-input" placeholder="What will you conquer this week? 💪">
+                        <button class="add-task-btn" onclick="addTask('weekly')">Add Task 🌟</button>
+                    </div>
+                    <ul class="task-list" id="weekly-list"></ul>
+                    <div class="stats" id="weekly-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="weekly-total">0</span>
+                            <span class="stat-label">Total Tasks</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="weekly-completed">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="weekly-pending">0</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monthly Tasks -->
+                <div class="tab-content" id="monthly-content">
+                    <h2 class="section-title">Monthly Vision 🌟</h2>
+                    <div class="input-section">
+                        <input type="text" class="task-input" id="monthly-input" placeholder="Big dreams for this month? 🎪">
+                        <button class="add-task-btn" onclick="addTask('monthly')">Add Task 🎨</button>
+                    </div>
+                    <ul class="task-list" id="monthly-list"></ul>
+                    <div class="stats" id="monthly-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="monthly-total">0</span>
+                            <span class="stat-label">Total Tasks</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="monthly-completed">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="monthly-pending">0</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Date Wise Tasks -->
+                <div class="tab-content" id="datewise-content">
+                    <h2 class="section-title">Pick Your Date 📆</h2>
+                    <div class="date-section">
+                        <input type="date" class="date-input" id="date-picker">
+                        <div class="date-display" id="date-display">Select a date above 👆</div>
+                    </div>
+                    <div class="input-section">
+                        <input type="text" class="task-input" id="datewise-input" placeholder="What's planned for this date? 🎭">
+                        <button class="add-task-btn" onclick="addTask('datewise')">Add Task 🎉</button>
+                    </div>
+                    <ul class="task-list" id="datewise-list"></ul>
+                    <div class="stats" id="datewise-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="datewise-total">0</span>
+                            <span class="stat-label">Total Tasks</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="datewise-completed">0</span>
+                            <span class="stat-label">Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="datewise-pending">0</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Tasks Page -->
+        <div class="page" id="all-tasks">
+            <div class="content">
+                <h2 class="section-title">All Your Tasks 📋</h2>
+
+                <div class="all-tasks-section">
+                    <div class="task-category-box">
+                        <h3 class="category-title">☀️ Daily Tasks</h3>
+                        <ul class="task-list" id="all-daily-list"></ul>
+                    </div>
+
+                    <div class="task-category-box">
+                        <h3 class="category-title">📅 Weekly Tasks</h3>
+                        <ul class="task-list" id="all-weekly-list"></ul>
+                    </div>
+
+                    <div class="task-category-box">
+                        <h3 class="category-title">🗓️ Monthly Tasks</h3>
+                        <ul class="task-list" id="all-monthly-list"></ul>
+                    </div>
+
+                    <div class="task-category-box">
+                        <h3 class="category-title">📆 Date Wise Tasks</h3>
+                        <ul class="task-list" id="all-datewise-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alarms Page -->
+        <div class="page" id="alarms">
+            <div class="content">
+                <h2 class="section-title">Alarm Clock ⏰</h2>
+
+                <div class="alarm-creator">
+                    <div class="alarm-time-picker-section">
+                        <label>Set Time ⏱️</label>
+                        <div class="time-picker-wrapper">
+                            <select id="alarm-hour" class="time-select">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <span class="time-separator">:</span>
+                            <select id="alarm-minute" class="time-select">
+                                <option value="00">00</option>
+                                <option value="05">05</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="35">35</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                                <option value="50">50</option>
+                                <option value="55">55</option>
+                            </select>
+                            <select id="alarm-period" class="time-select period-select">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="alarm-input-group">
+                        <label for="alarm-note">Reminder Note 📝</label>
+                        <input type="text" id="alarm-note" class="task-input" placeholder="What should I remind you about?">
+                    </div>
+
+                    <button class="add-task-btn" onclick="setAlarm()">Set Alarm 🔔</button>
+                </div>
+
+                <div class="alarms-list-section">
+                    <h3 class="category-title">Your Alarms 🔔</h3>
+                    <ul class="alarms-list" id="alarms-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alarm Notification Modal -->
+    <div class="alarm-modal" id="alarmModal">
+        <div class="alarm-modal-content">
+            <div class="alarm-icon">⏰</div>
+            <h2 class="alarm-title">Time's Up!</h2>
+            <p class="alarm-message" id="alarmMessage"></p>
+            <button class="dismiss-btn" onclick="dismissAlarm()">Dismiss 👍</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
