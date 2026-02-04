@@ -1076,8 +1076,6 @@ body {
 @media (max-width: 968px) {
     .live-clock {
         order: 3;
-        width: 100%;
-        justify-content: center;
     }
     .nav-menu {
         order: 2;
@@ -1099,30 +1097,43 @@ body {
     body {
         padding-top: 70px;
     }
-    /* Navbar Mobile */
+    /* Navbar Mobile - FIXED LAYOUT */
     .navbar {
-        padding: 8px 0;
+        padding: 10px 0;
     }
-    .nav-logo {
-        font-size: 1.3rem;
+    .nav-container {
+        padding: 0 15px;
+        gap: 10px;
     }
-    .logo-icon {
-        font-size: 1.5rem;
-    }
-    .live-clock {
-        padding: 6px 14px;
-    }
-    .clock-time {
-        font-size: 0.85rem;
-    }
-    .clock-date {
-        font-size: 0.6rem;
-    }
-    .clock-emoji {
-        font-size: 1.1rem;
-    }
+    /* Left side: Hamburger + Logo */
     .hamburger {
         display: flex;
+        order: 1;
+        flex-shrink: 0;
+    }
+    .nav-logo {
+        order: 2;
+        font-size: 1.3rem;
+        flex: 1;
+    }
+    .logo-icon {
+        font-size: 1.4rem;
+    }
+    /* Right side: Clock */
+    .live-clock {
+        order: 3;
+        display: flex !important;
+        padding: 6px 12px;
+        flex-shrink: 0;
+    }
+    .clock-emoji {
+        font-size: 1rem;
+    }
+    .clock-time {
+        font-size: 0.75rem;
+    }
+    .clock-date {
+        font-size: 0.55rem;
     }
     .nav-menu {
         position: fixed;
@@ -1136,6 +1147,7 @@ body {
         padding: 40px 20px;
         transition: left 0.3s ease;
         box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+        order: 4;
     }
     .nav-menu.active {
         left: 0;
