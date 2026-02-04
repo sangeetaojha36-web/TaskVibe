@@ -235,20 +235,7 @@
                                 <option value="12">12</option>
                             </select>
                             <span class="time-separator">:</span>
-                            <select id="alarm-minute" class="time-select">
-                                <option value="00">00</option>
-                                <option value="05">05</option>
-                                <option value="10">10</option>
-                                <option value="15">15</option>
-                                <option value="20">20</option>
-                                <option value="25">25</option>
-                                <option value="30">30</option>
-                                <option value="35">35</option>
-                                <option value="40">40</option>
-                                <option value="45">45</option>
-                                <option value="50">50</option>
-                                <option value="55">55</option>
-                            </select>
+                            <input type="number" id="alarm-minute" class="time-select" min="0" max="59" value="00" placeholder="00">
                             <select id="alarm-period" class="time-select period-select">
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>

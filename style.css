@@ -5,8 +5,8 @@
 }
 
 :root {
-    --bg-light: #FFF0F6;
-    --card-light: rgba(255, 255, 255, 0.7);
+    --bg-light: #FFD4E5;
+    --card-light: rgba(255, 220, 240, 0.8);
     --text-light: #2c1a3e;
     --text-secondary-light: #6b4c7a;
     --pink: #ff6b9d;
@@ -238,7 +238,7 @@ body {
 }
 
 
-/* Dreamy Live Clock - NO BORDER BOX */
+/* Dreamy Live Clock */
 
 .live-clock {
     display: flex;
@@ -1071,31 +1071,65 @@ body {
 }
 
 
-/* Responsive */
+/* ==================== MOBILE RESPONSIVE ==================== */
 
 @media (max-width: 968px) {
     .live-clock {
         order: 3;
         width: 100%;
+        justify-content: center;
     }
     .nav-menu {
         order: 2;
+    }
+    .tabs {
+        gap: 10px;
+        margin: 20px 0;
+    }
+    .tab {
+        padding: 14px 25px;
+        font-size: 0.95rem;
+    }
+    .tab-emoji {
+        font-size: 1.2rem;
     }
 }
 
 @media (max-width: 768px) {
     body {
-        padding-top: 80px;
+        padding-top: 70px;
+    }
+    /* Navbar Mobile */
+    .navbar {
+        padding: 8px 0;
+    }
+    .nav-logo {
+        font-size: 1.3rem;
+    }
+    .logo-icon {
+        font-size: 1.5rem;
+    }
+    .live-clock {
+        padding: 6px 14px;
+    }
+    .clock-time {
+        font-size: 0.85rem;
+    }
+    .clock-date {
+        font-size: 0.6rem;
+    }
+    .clock-emoji {
+        font-size: 1.1rem;
     }
     .hamburger {
         display: flex;
     }
     .nav-menu {
         position: fixed;
-        top: 77px;
+        top: 70px;
         left: -100%;
         width: 100%;
-        height: calc(100vh - 77px);
+        height: calc(100vh - 70px);
         background: var(--card-light);
         backdrop-filter: blur(20px);
         flex-direction: column;
@@ -1109,32 +1143,206 @@ body {
     .nav-link {
         width: 100%;
         text-align: center;
+        font-size: 1.1rem;
+        padding: 15px 20px;
     }
-    .live-clock {
-        width: auto;
+    /* Container & Content */
+    .container {
+        padding: 15px;
     }
     .content {
-        padding: 30px 20px;
+        padding: 25px 15px;
+        border-radius: 20px;
     }
     .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
     }
-    .task-item {
+    /* Tabs Mobile */
+    .tabs {
+        gap: 8px;
+        margin: 15px 0;
+    }
+    .tab {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+        flex: 1;
+        min-width: 120px;
+    }
+    .tab.active {
+        transform: scale(1.05);
+    }
+    .tab:hover {
+        transform: translateY(0) scale(1.05);
+    }
+    .tab-emoji {
+        font-size: 1rem;
+        margin-right: 5px;
+    }
+    /* Input Section Mobile */
+    .input-section {
+        gap: 10px;
+    }
+    .task-input {
+        min-width: 100%;
+        width: 100%;
         padding: 15px 20px;
+        font-size: 1rem;
+    }
+    .add-task-btn {
+        width: 100%;
+        padding: 15px 30px;
+        font-size: 1rem;
+    }
+    /* Task Items Mobile */
+    .task-item {
+        padding: 15px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    .task-checkbox {
+        width: 25px;
+        height: 25px;
+    }
+    .task-text {
+        font-size: 1rem;
+        flex: 1;
+        min-width: 150px;
+    }
+    .task-emoji {
+        font-size: 1.3rem;
     }
     .delete-btn {
         opacity: 1;
         transform: translateX(0);
+        padding: 8px 20px;
+        font-size: 0.9rem;
     }
+    .task-item:hover {
+        transform: translateX(0) scale(1);
+    }
+    /* Stats Mobile */
+    .stats {
+        padding: 20px 10px;
+        gap: 15px;
+    }
+    .stat-number {
+        font-size: 2rem;
+    }
+    .stat-label {
+        font-size: 0.85rem;
+    }
+    /* Date Section Mobile */
+    .date-input {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+    .date-display {
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+    /* All Tasks Grid Mobile */
     .all-tasks-section {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
-    .alarm-modal-content {
-        padding: 30px 20px;
-        max-width: 90%;
+    .task-category-box {
+        padding: 20px;
+    }
+    .category-title {
+        font-size: 1.3rem;
+    }
+    /* Alarm Section Mobile */
+    .alarm-creator {
+        padding: 20px 15px;
+    }
+    .alarm-time-picker-section label {
+        font-size: 1.1rem;
+        text-align: center;
     }
     .time-picker-wrapper {
         flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    .time-select {
+        padding: 12px 15px;
+        font-size: 1.1rem;
+        min-width: 70px;
+    }
+    .time-separator {
+        font-size: 1.5rem;
+    }
+    .alarm-input-group label {
+        font-size: 1.1rem;
+    }
+    .alarms-list-section {
+        padding: 20px 15px;
+    }
+    .alarm-item {
+        padding: 15px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .alarm-time-display {
+        font-size: 1.5rem;
+    }
+    .alarm-note-display {
+        font-size: 1rem;
+    }
+    .alarm-item:hover {
+        transform: translateX(0);
+    }
+    /* Alarm Modal Mobile */
+    .alarm-modal-content {
+        padding: 30px 20px;
+        max-width: 90%;
+        margin: 0 15px;
+    }
+    .alarm-icon {
+        font-size: 3.5rem;
+    }
+    .alarm-title {
+        font-size: 2rem;
+    }
+    .alarm-message {
+        font-size: 1.2rem;
+    }
+    .dismiss-btn {
+        padding: 15px 40px;
+        font-size: 1.1rem;
+    }
+    /* Theme Toggle Mobile */
+    .theme-toggle-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+
+/* Small Mobile Devices */
+
+@media (max-width: 480px) {
+    .nav-logo {
+        font-size: 1.1rem;
+    }
+    .section-title {
+        font-size: 1.5rem;
+    }
+    .tab {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+        min-width: 100px;
+    }
+    .time-select {
+        font-size: 1rem;
+        padding: 10px 12px;
+        min-width: 60px;
+    }
+    .task-text {
+        font-size: 0.95rem;
     }
 }
 

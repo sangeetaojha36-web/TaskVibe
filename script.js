@@ -281,11 +281,42 @@ function updateDateDisplay() {
     renderTasks(type);
 });
 
-// ===== ALARM CLOCK FUNCTIONALITY WITH CONTINUOUS RINGING =====
+// ===== ALARM CLOCK FUNCTIONALITY WITH FLEXIBLE MINUTE INPUT =====
 
 let alarmCheckInterval;
-let currentAlarmSound = null; // Track current alarm sound interval
-let currentAlarmId = null; // Track which alarm is currently ringing
+let currentAlarmSound = null;
+let currentAlarmId = null;
+
+// Auto-format minute input
+const minuteInput = document.getElementById('alarm-minute');
+minuteInput.addEventListener('input', function() {
+    let value = parseInt(this.value);
+
+    // Remove non-numeric characters
+    this.value = this.value.replace(/[^0-9]/g, '');
+
+    // Limit to 59
+    if (value > 59) {
+        this.value = '59';
+    }
+
+    // Ensure it's not negative
+    if (value < 0 || isNaN(value)) {
+        this.value = '00';
+    }
+});
+
+minuteInput.addEventListener('blur', function() {
+    // Add leading zero if single digit
+    if (this.value.length === 1) {
+        this.value = '0' + this.value;
+    }
+
+    // Set to 00 if empty
+    if (this.value === '' || this.value === '0') {
+        this.value = '00';
+    }
+});
 
 // Load alarms from localStorage
 function loadAlarms() {
@@ -311,17 +342,40 @@ function convertTo24Hour(hour, minute, period) {
     return `${String(hour24).padStart(2, '0')}:${minute}`;
 }
 
-// Set Alarm with AM/PM
+// Set Alarm with flexible minute input
 function setAlarm() {
     const hourSelect = document.getElementById('alarm-hour');
-    const minuteSelect = document.getElementById('alarm-minute');
+    const minuteInput = document.getElementById('alarm-minute');
     const periodSelect = document.getElementById('alarm-period');
     const noteInput = document.getElementById('alarm-note');
 
     const hour = hourSelect.value;
-    const minute = minuteSelect.value;
+    let minute = minuteInput.value.trim();
     const period = periodSelect.value;
     const note = noteInput.value.trim();
+
+    // Validate minute
+    if (minute === '' || isNaN(parseInt(minute))) {
+        minuteInput.style.borderColor = '#ff6b6b';
+        setTimeout(() => {
+            minuteInput.style.borderColor = '';
+        }, 500);
+        return;
+    }
+
+    // Format minute to 2 digits
+    minute = String(parseInt(minute)).padStart(2, '0');
+    minuteInput.value = minute;
+
+    // Validate minute range
+    if (parseInt(minute) > 59) {
+        minuteInput.style.borderColor = '#ff6b6b';
+        showNotification('❌ Minutes must be between 00-59!');
+        setTimeout(() => {
+            minuteInput.style.borderColor = '';
+        }, 500);
+        return;
+    }
 
     if (!note) {
         noteInput.style.borderColor = '#ff6b6b';
@@ -348,6 +402,7 @@ function setAlarm() {
     saveAlarms(alarms);
 
     noteInput.value = '';
+    minuteInput.value = '00';
 
     renderAlarms();
 
@@ -543,7 +598,7 @@ function playAlarmBeep() {
                 oscillator.connect(gainNode);
                 gainNode.connect(audioContext.destination);
 
-                oscillator.frequency.value = 880; // Higher pitch for urgency
+                oscillator.frequency.value = 880;
                 oscillator.type = 'sine';
 
                 gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
@@ -566,6 +621,12 @@ renderAlarms();
 
 // Enter key support for alarm inputs
 document.getElementById('alarm-note').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        setAlarm();
+    }
+});
+
+minuteInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         setAlarm();
     }
